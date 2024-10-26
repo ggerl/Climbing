@@ -7,7 +7,7 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakePhysicalDamage(int damage);
+    void TakePhysicalDamage(float damage);
 }
 
 public class PlayerCondition : MonoBehaviour, IDamageable
@@ -18,12 +18,21 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     Condition health { get { return uiCondition.health; } }
     Condition frozen { get { return uiCondition.frozen; } }
 
-    public float noHungerHealthDecay;
+    public float noFrozenHealthDecay;
     public event Action onTakeDamage;
 
     void Update()
     {
     
+        if(frozen.curValue <= 0f)
+        {
+            TakePhysicalDamage(noFrozenHealthDecay * Time.deltaTime);
+        }
+
+        if(health.curValue <= 0f)
+        {
+            Die();
+        }
     }
     public void Heal(float amount)
     {
@@ -37,7 +46,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
         Debug.Log("사망");
     }
 
-    public void TakePhysicalDamage(int damage)
+    public void TakePhysicalDamage(float damage)
     {
         health.Subtract(damage);
         onTakeDamage?.Invoke();

@@ -6,9 +6,12 @@ public class Player : MonoBehaviour
 {
     public UiCondition uiCondition;
     public PlayerCondition playerCondition;
+    public InteractableDataSO InteractableDataSO;
+
+
     private void Awake()
     {
-        CharacterManager.Instance.player = this;
+        CharacterManager.Instance.Player = this;
 
     }
 

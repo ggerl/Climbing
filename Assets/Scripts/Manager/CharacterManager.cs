@@ -7,7 +7,13 @@ public class CharacterManager : MonoBehaviour
 {
     private static CharacterManager instance;
 
-    public Player player;
+    private Player player;
+
+    public Player Player
+    {
+        get { return player; }
+        set { player = value; }
+    }
     public static CharacterManager Instance { get { return instance; } }
 
     private void Awake()

@@ -9,7 +9,7 @@ public class UiCondition : MonoBehaviour
 
     void Start()
     {
-        CharacterManager.Instance.player.playerCondition.uiCondition = this;
+        CharacterManager.Instance.Player.playerCondition.uiCondition = this;
     }
 
     // Update is called once per frame
