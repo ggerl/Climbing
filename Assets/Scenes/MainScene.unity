@@ -348,11 +348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c9ffab5f6df3ea4495a6743140ae1ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.088
+      value: 2.12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c9ffab5f6df3ea4495a6743140ae1ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.47
+      value: 99.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9c9ffab5f6df3ea4495a6743140ae1ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1105,6 +1105,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac9c2068212c584489844e97e5e3e30d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1174370893}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac9c2068212c584489844e97e5e3e30d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1174370895}
   m_SourcePrefab: {fileID: 100100000, guid: ac9c2068212c584489844e97e5e3e30d, type: 3}
 --- !u!4 &1174370887 stripped
 Transform:
@@ -1123,7 +1126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416e20e1141f18247bcaeb15b5591858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 10
   CameraContainer: {fileID: 963194228}
   minXLook: -85
   maxXLook: 85
@@ -1255,6 +1258,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   rb: {fileID: 0}
+--- !u!114 &1174370895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482273362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf3f46836d665d42b146c8ce0fec4c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 108562, guid: e1239991fa745f64a9ef787ae6db26a2, type: 3}
+  rightHand: {fileID: 0}
 --- !u!1 &1177966791
 GameObject:
   m_ObjectHideFlags: 0
