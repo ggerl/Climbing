@@ -5,29 +5,27 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-
-    public DayCycle dayCycle;
+  
     public static GameManager Instance { get { return instance; } }
 
-   
+    public DayCycle dayCycle;
 
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance == null)
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
+            dayCycle = GetComponent<DayCycle>();
+            DontDestroyOnLoad(gameObject);   
         }
-
-        instance = this;
-
+        else
+        {
+            if (instance != null)
+                Destroy(gameObject);
+        }
     }
 
-    private void Start()
-    {
-        dayCycle = GetComponent<DayCycle>();
-    }
-
+  
 
 }

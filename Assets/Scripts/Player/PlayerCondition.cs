@@ -14,6 +14,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 {
     public UiCondition uiCondition;
 
+    
 
     Condition health { get { return uiCondition.health; } }
     Condition frozen { get { return uiCondition.frozen; } }
@@ -21,6 +22,8 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     public float noFrozenHealthDecay;
     public event Action onTakeDamage;
     public float frozenAmount = 10f; // 밤에 감소할 값
+
+
     void Update()
     {
 
@@ -63,13 +66,18 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public void frozenDecayOnNight()
     {
-        Debug.Log($"밤인가 {GameManager.Instance.dayCycle.isNight}");
+        if(GameManager.Instance == null)
+        {
+            Debug.Log("널이야");
+        }
+
 
         if (GameManager.Instance.dayCycle.isNight)
         {
             
             frozen.Subtract(frozenAmount);
         }
+       
     }
 }
 

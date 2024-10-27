@@ -9,6 +9,10 @@ public class UiCondition : MonoBehaviour
 
     void Start()
     {
+       if(CharacterManager.Instance.Player.playerCondition == null)
+        {
+            Debug.Log("캐릭터 컨디션 널");
+        }
         CharacterManager.Instance.Player.playerCondition.uiCondition = this;
     }
 

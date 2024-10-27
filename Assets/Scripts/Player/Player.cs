@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public UiCondition uiCondition;
     public PlayerCondition playerCondition;
     public InteractableDataSO InteractableDataSO;
     public PlayerController playerController;
 
 
-    private void Start()
+    private void Awake()
     {
         CharacterManager.Instance.Player = this;
         playerController = GetComponent<PlayerController>(); 
+        playerCondition = GetComponent<PlayerCondition>();  
 
     }
 
