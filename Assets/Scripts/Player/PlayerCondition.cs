@@ -20,11 +20,13 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public float noFrozenHealthDecay;
     public event Action onTakeDamage;
-
+    public float frozenAmount = 10f; // 밤에 감소할 값
     void Update()
     {
-    
-        if(frozen.curValue <= 0f)
+
+        frozenDecayOnNight();
+
+        if (frozen.curValue <= 0f)
         {
             TakePhysicalDamage(noFrozenHealthDecay * Time.deltaTime);
         }
@@ -34,10 +36,17 @@ public class PlayerCondition : MonoBehaviour, IDamageable
             Die();
         }
     }
-    public void Heal(float amount)
+    public void Heal(float amount,ObjectType objectType)
     {
-        health.Add(amount);
-
+        switch(objectType)
+        {
+            case ObjectType.HealingPotion:
+                health.Add(amount);
+                break;
+            case ObjectType.WarmPotion:
+                frozen.Add(amount);
+                break;
+        }       
     }
 
 
@@ -52,6 +61,15 @@ public class PlayerCondition : MonoBehaviour, IDamageable
         onTakeDamage?.Invoke();
     }
 
+    public void frozenDecayOnNight()
+    {
+        Debug.Log($"밤인가 {GameManager.Instance.dayCycle.isNight}");
 
+        if (GameManager.Instance.dayCycle.isNight)
+        {
+            
+            frozen.Subtract(frozenAmount);
+        }
+    }
 }
 

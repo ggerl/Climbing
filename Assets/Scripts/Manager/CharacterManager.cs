@@ -6,6 +6,20 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     private static CharacterManager instance;
+    public static CharacterManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject("CharacterManager").AddComponent<CharacterManager>();
+
+            }
+            return instance;
+
+        }
+
+    }
 
     private Player player;
 
@@ -14,18 +28,20 @@ public class CharacterManager : MonoBehaviour
         get { return player; }
         set { player = value; }
     }
-    public static CharacterManager Instance { get { return instance; } }
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(gameObject);
-            return;
+            instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        instance = this;
- 
-
+        else
+        {
+            if (instance != this)
+                Destroy(gameObject);
+        }
     }
+
 }

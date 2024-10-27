@@ -5,8 +5,7 @@ public class Condition : MonoBehaviour
 {
     public float curValue;
     public float startValue;
-    public float maxValue;
-    public float passiveValue;
+    public float maxValue;  
     public Image uibar;
 
     private void Start()

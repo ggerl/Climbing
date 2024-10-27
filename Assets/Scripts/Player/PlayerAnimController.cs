@@ -1,31 +1,54 @@
 ﻿
+using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PlayerAnimController : MonoBehaviour 
+public class PlayerAnimController : MonoBehaviour
 {
 
     public Animator animator;
     public Rigidbody rb;
-    
+    private float currentPlayerSpeed;
 
 
     private void Update()
     {
-        SetPlayerAnim();
-        Debug.Log("현재 속도값" + rb.velocity.magnitude);
+        currentPlayerSpeed = rb.velocity.magnitude;
+        Debug.Log("현재속도" + currentPlayerSpeed);
+        SetPlayerMoveAnim();
+        
     }
 
     private void Start()
     {
-        animator = GetComponent<Animator>();  
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
 
-    private void SetPlayerAnim()
+    private void SetPlayerMoveAnim()
     {
-        animator.SetBool("Run", rb.velocity.magnitude > 0.3);
+
+        animator.SetBool("Falling", false);
+        if (CharacterManager.Instance.Player.playerController.IsGrounded())
+        {
+            
+           
+            animator.SetBool("Run", currentPlayerSpeed > 0.3f);
+
+        }
+        else
+        {
+            animator.SetBool("Falling", currentPlayerSpeed > 0.3f);
+        }
+             
+
     }
 
+
+
+
 }
+
+
+

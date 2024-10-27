@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    
+
+    public DayCycle dayCycle;
     public static GameManager Instance { get { return instance; } }
 
    
@@ -21,6 +22,11 @@ public class GameManager : MonoBehaviour
 
         instance = this;
 
+    }
+
+    private void Start()
+    {
+        dayCycle = GetComponent<DayCycle>();
     }
 
 
