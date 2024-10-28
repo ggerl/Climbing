@@ -24,11 +24,17 @@ public class DayCycle : MonoBehaviour
 
     void Update()
     {
-        // 하루 길이에 따라 시간 업데이트
+        
         currentTime += Time.deltaTime;
         rotationAngle = (currentTime / dayLength) * 360f;
 
-        // 태양 회전
+        if (rotationAngle >= 360f)
+        {
+             
+            currentTime = 0; 
+        }
+
+
         sun.transform.rotation = Quaternion.Euler(rotationAngle, 0, 0);
 
         isNightTime();
@@ -37,6 +43,7 @@ public class DayCycle : MonoBehaviour
     void isNightTime()
     {
         bool wasNight = isNight; 
+
         isNight = rotationAngle > 180f; 
 
         

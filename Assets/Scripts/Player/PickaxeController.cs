@@ -54,7 +54,7 @@ public class PickaxeController : MonoBehaviour
 
             if (rb != null)
             {
-                // 마우스 위치를 월드 좌표로 변환
+                
                 Ray cameraRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width /2 , Screen.height /2 ));
                 RaycastHit hit;
 

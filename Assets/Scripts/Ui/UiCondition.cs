@@ -6,6 +6,7 @@ public class UiCondition : MonoBehaviour
 {
     public Condition health;
     public Condition frozen;
+    public Condition temp;
 
     void Start()
     {
