@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     public LayerMask laymask;
-   
+
 
     private void Start()
     {
-        
+
         rb = GetComponent<Rigidbody>();
-        
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     private void Update()
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        
+
     }
 
     private void LateUpdate()
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("점프");
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        
+
     }
 
     private void CameraLook()
@@ -111,7 +112,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < rays.Length; i++)
         {
             RaycastHit hit;
-            if (Physics.Raycast(rays[i], out hit, 0.5f)) 
+            if (Physics.Raycast(rays[i], out hit, 0.5f))
             {
                 Debug.DrawRay(rays[i].origin, rays[i].direction * 0.5f, Color.red);
                 if (hit.collider.CompareTag("Ground"))
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("땅에 있음");
                     return true;
                 }
-               
+
             }
             Debug.DrawRay(rays[i].origin, rays[i].direction * 1f, Color.green);
 
@@ -129,4 +130,26 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    public void SpeedChangeCoroutine(float speed, float time)
+    {
+        StartCoroutine(ChangeMoveSpeed(speed, time));
+    }
+    public IEnumerator ChangeMoveSpeed(float speed, float time)
+    {
+        moveSpeed += speed;
+
+        yield return new WaitForSeconds(time);
+
+        moveSpeed -= speed;
+
+    }
+
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+
+    }
 }
+

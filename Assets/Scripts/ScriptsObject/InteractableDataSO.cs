@@ -7,7 +7,8 @@ public enum ObjectType
 {
     Rock,
     HealingPotion,
-    WarmPotion
+    WarmPotion,
+    SpeedPotion
 
 }
 

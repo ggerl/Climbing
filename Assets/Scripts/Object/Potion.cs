@@ -1,9 +1,11 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Potion : Object
 {
     
+    public float maxTime;
 
 
     private void OnCollisionEnter(Collision collision)
@@ -22,11 +24,19 @@ public class Potion : Object
                     Destroy(gameObject);
                     break;
 
+                case ObjectType.SpeedPotion:
+                    CharacterManager.Instance.Player.playerController.SpeedChangeCoroutine(interactableDataSO.itemValue, maxTime);   
+                    Destroy(gameObject);
+                    break;
 
             }
                 
         }
     }
+
+   
+
+
 
 
 

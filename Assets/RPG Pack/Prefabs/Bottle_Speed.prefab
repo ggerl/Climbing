@@ -9728,7 +9728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013828724138}
   m_Layer: 0
-  m_Name: Bottle_Endurance
+  m_Name: Bottle_Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

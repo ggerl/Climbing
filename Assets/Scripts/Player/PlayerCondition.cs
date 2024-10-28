@@ -21,7 +21,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
 
     public float noFrozenHealthDecay;
     public event Action onTakeDamage;
-    public float frozenAmount = 10f; // 밤에 감소할 값
+    public float frozenAmount = 3f; // 밤에 감소할 값
 
 
     void Update()
@@ -70,7 +70,6 @@ public class PlayerCondition : MonoBehaviour, IDamageable
         {
             Debug.Log("널이야");
         }
-
 
         if (GameManager.Instance.dayCycle.isNight)
         {
