@@ -17,7 +17,7 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     private float lastCheckTime;
     public float tempReduceCoolDown;
     private bool tempZero;
-
+    
     Condition health { get { return uiCondition.health; } }
     Condition frozen { get { return uiCondition.frozen; } }
 

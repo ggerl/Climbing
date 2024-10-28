@@ -7,65 +7,46 @@ public class PickaxeController : MonoBehaviour
     public GameObject pickaxePrefab; // 곡괭이 프리펩
     public Transform handTransform; // 손의 Transform
     public Animator animator; // 플레이어의 애니메이터
-    public string throwAnimationName = "Throw"; // 던지기 애니메이션 이름
+    public string throwAnimationName = "Throw"; // 던지기 애니메이션
     public float throwForce = 10f; // 던질 힘
 
     public float respawnTime;
     public Rigidbody rb;
     private GameObject currentPickaxe; // 현재 손에 있는 곡괭이
-    private bool isHolding = true;
+    private bool isHolding;
     void Start()
     {
         animator = GetComponent<Animator>();
         handTransform = animator.GetBoneTransform(HumanBodyBones.RightHand);
         // 곡괭이 생성
         SpawnPickaxe();
-
+        CharacterManager.Instance.Player.playerController.pickaxeThrow += ThrowPickaxe;
 
     }
 
-    void Update()
-    {
-        // 특정 키를 눌렀을 때 애니메이션 재생
-        if (Input.GetKey(KeyCode.R)) // 예: R키를 눌렀을 때
-        {
-            animator.SetBool(throwAnimationName, true); // 애니메이션 재생
-        }
-        else
-        {
-            animator.SetBool(throwAnimationName, false); // 애니메이션 정지
-        }
 
-        // 던지기 버튼을 눌렀을 때
-        if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 버튼 클릭
-        {
-            ThrowPickaxe();
-        }
-    }
+
 
     private void ThrowPickaxe()
     {
         if (currentPickaxe != null)
         {
-            // 곡괭이를 손에서 분리
-            currentPickaxe.transform.SetParent(null);
             isHolding = false;
-            rb.isKinematic = isHolding;
 
             if (rb != null)
             {
-                
-                Ray cameraRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width /2 , Screen.height /2 ));
-                RaycastHit hit;
+                Vector3 throwDirection = CharacterManager.Instance.Player.playerController.currentCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10f)) - handTransform.position;
 
-                // 마우스 클릭 위치를 찾기 위한 레이캐스트
-                if (Physics.Raycast(cameraRay, out hit))
-                {
-                    // 클릭 방향으로 힘을 가함
-                    Vector3 throwDirection = (hit.point - handTransform.position).normalized;
-                    rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
-                }
+                throwDirection.Normalize();
+                rb.isKinematic = isHolding;
+                rb.AddForce(throwDirection * throwForce, ForceMode.Impulse);
+                Debug.Log("속력: " + rb.velocity.magnitude);
+                currentPickaxe.transform.SetParent(null);
+
+
+
             }
+
 
             // 현재 곡괭이 참조를 null로 설정
 
@@ -84,13 +65,10 @@ public class PickaxeController : MonoBehaviour
     }
     private void SpawnPickaxe()
     {
-        if (currentPickaxe != null)
-        {
-            Destroy(currentPickaxe); // 기존 곡괭이 파괴
-        }
+        if (currentPickaxe != null) return;
 
         Debug.Log("곡괭이 생성");
-        currentPickaxe = Instantiate(pickaxePrefab, handTransform.position, handTransform.rotation);
+        currentPickaxe = Instantiate(pickaxePrefab, handTransform.position, handTransform.rotation );
         rb = currentPickaxe.GetComponent<Rigidbody>();
         isHolding = true;
         rb.isKinematic = isHolding;

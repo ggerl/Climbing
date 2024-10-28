@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,14 +21,15 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
     private Vector2 mouseDelta;
 
-
+    public Camera currentCamera;
     private Rigidbody rb;
     public LayerMask laymask;
-
+    public Action pickaxeThrow;
+    public Action toggleCamera;
 
     private void Start()
     {
-
+        currentCamera = Camera.main.GetComponent<Camera>();
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         CameraLook();
     }
-    public void OnMoveInput(InputAction.CallbackContext context)
+    public void OnMoveInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
     {
         if (context.phase == InputActionPhase.Performed)
         {
@@ -60,10 +62,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnLookInput(InputAction.CallbackContext context)
+    public void OnLookInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
     {
         mouseDelta = context.ReadValue<Vector2>();
         Debug.Log(mouseDelta);
+    }
+
+    public void OnThrowInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    {
+        pickaxeThrow?.Invoke();
+    }
+
+    public void OnChangeCamera(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    {
+        toggleCamera?.Invoke();
     }
 
     private void Move()
@@ -74,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = dir;
     }
-    public void OnJumpInput(InputAction.CallbackContext context)
+    public void OnJumpInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
     {
         if (context.phase == InputActionPhase.Performed && IsGrounded())
         {
@@ -151,5 +163,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
 
     }
+
+  
 }
 

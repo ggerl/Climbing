@@ -26,7 +26,7 @@ public class PlayerAnimController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void SetPlayerMoveAnim()
+    private void SetPlayerMoveAnim() // ToDo : 리팩토링 Update문 제거
     {
 
         animator.SetBool("Falling", false);
