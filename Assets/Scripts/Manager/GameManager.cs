@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             dayCycle = GetComponent<DayCycle>();
-            DontDestroyOnLoad(gameObject);   
+               
         }
         else
         {

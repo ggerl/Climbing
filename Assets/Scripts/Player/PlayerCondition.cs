@@ -20,7 +20,6 @@ public class PlayerCondition : MonoBehaviour, IDamageable
     
     Condition health { get { return uiCondition.health; } }
     Condition frozen { get { return uiCondition.frozen; } }
-
     Condition temp { get { return uiCondition.temp; } }
 
     public float noFrozenHealthDecay;

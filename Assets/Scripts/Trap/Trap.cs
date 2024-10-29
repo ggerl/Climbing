@@ -13,7 +13,7 @@ public interface HaveLaser
 
 public abstract class Trap : MonoBehaviour
 {
-
+    public LayerMask LayerMask;
     protected abstract void OnCollide(Collision collision);
    
 

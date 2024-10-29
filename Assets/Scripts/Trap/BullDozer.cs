@@ -47,14 +47,25 @@ public class BullDozer : Trap, HaveLaser
  
     public void ShootLaser()
     {
-        RaycastHit hit;      
+        RaycastHit hit;     
+        
         if (Physics.BoxCast(firePoint.position, boxSize, firePoint.forward, out hit, Quaternion.identity, laserRange))
-        {
+        {    
+            
             rb.AddForce(Vector3.left * dashForce, ForceMode.Impulse);
+            
         }
-
+     
     }
 
-   
+    private void OnDrawGizmos()
+    {
+        Vector3 start = firePoint.position;       
+        Vector3 end = start + firePoint.forward * laserRange;
+        Gizmos.color = Color.blue;
+        Vector3 center = (start + end) / 2;       
+        Vector3 size = new Vector3(laserRange, boxSize.y, boxSize.x);
+        Gizmos.DrawWireCube(center, size); 
+    }
 }
 

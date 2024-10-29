@@ -18,8 +18,13 @@ public class DayCycle : MonoBehaviour
 
     private void Awake()
     {
-     
+        
         isNight = false;
+    }
+
+    private void Start()
+    {
+        sun = GameObject.FindWithTag("Sun");
     }
 
     void Update()
