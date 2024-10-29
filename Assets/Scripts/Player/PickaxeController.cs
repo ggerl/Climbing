@@ -20,7 +20,7 @@ public class PickaxeController : MonoBehaviour
         handTransform = animator.GetBoneTransform(HumanBodyBones.RightHand);
         // °î±ªÀÌ »ý¼º
         SpawnPickaxe();
-        CharacterManager.Instance.Player.playerController.pickaxeThrow += ThrowPickaxe;
+        CharacterManager.Instance.Player.playerInputController.pickaxeThrow += ThrowPickaxe;
 
     }
 

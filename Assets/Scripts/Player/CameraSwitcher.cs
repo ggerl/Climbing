@@ -10,7 +10,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void Start()
     {
-        CharacterManager.Instance.Player.playerController.toggleCamera += cameraChange;
+        CharacterManager.Instance.Player.playerInputController.toggleCamera += cameraChange;
     }
     private void cameraChange()
     {

@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface PushAble
+
+
+public interface HaveLaser
 {
-    public void PushCharacter();
+
+    public void ShootLaser();
 
 }
 
 public abstract class Trap : MonoBehaviour
 {
 
-    public abstract void OnCollide();
+    protected abstract void OnCollide(Collision collision);
    
 
 }

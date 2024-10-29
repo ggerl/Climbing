@@ -1,17 +1,60 @@
 ﻿
 
-public class BullDozer : Trap, PushAble
+using JetBrains.Annotations;
+using UnityEngine;
+using UnityEngine.Animations.Rigging;
+
+public class BullDozer : Trap, HaveLaser
 {
+   
+    public float laserRange;
+    public Transform firePoint;
+    public Vector3 boxSize;
+    private Rigidbody rb;
+    public float dashForce;
+    public float pushForce;
+    
+    
 
-
-    public override void OnCollide()
+    private void Awake()
     {
-        throw new System.NotImplementedException();
+        rb = GetComponent<Rigidbody>();
+        
     }
 
-    public void PushCharacter()
+    private void Update()
     {
-        throw new System.NotImplementedException();
+        ShootLaser();
     }
+    protected override void OnCollide(Collision collision)
+    {
+        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+
+        if (playerController != null)
+        {
+            Vector3 dir = (collision.transform.position - transform.position).normalized;
+            playerController.PlayerPushToggleCoroutine();
+            playerController.Addforce(dir,pushForce);
+            
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        OnCollide(collision);
+
+    }
+ 
+    public void ShootLaser()
+    {
+        RaycastHit hit;      
+        if (Physics.BoxCast(firePoint.position, boxSize, firePoint.forward, out hit, Quaternion.identity, laserRange))
+        {
+            rb.AddForce(Vector3.left * dashForce, ForceMode.Impulse);
+        }
+
+    }
+
+   
 }
 

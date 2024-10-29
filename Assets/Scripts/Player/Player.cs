@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public PlayerCondition playerCondition;
     public InteractableDataSO InteractableDataSO;
     public PlayerController playerController;
+    public PlayerInputController playerInputController;
 
 
     private void Awake()
@@ -14,12 +15,7 @@ public class Player : MonoBehaviour
         CharacterManager.Instance.Player = this;
         playerController = GetComponent<PlayerController>(); 
         playerCondition = GetComponent<PlayerCondition>();  
-
+        playerInputController = GetComponent<PlayerInputController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
