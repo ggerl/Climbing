@@ -18,7 +18,7 @@ public class PlayerInputController : MonoBehaviour
         playerController.Move(moveInput);
     }
 
-    public void OnMoveInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    public void OnMoveInput(InputAction.CallbackContext context) // TODO : 리팩토링 클래스분리
     {
         if (context.phase == InputActionPhase.Performed)
         {
@@ -30,22 +30,22 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
-    public void OnLookInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    public void OnLookInput(InputAction.CallbackContext context) // TODO : 리팩토링 클래스분리
     {
         playerController.CameraLook(context.ReadValue<Vector2>());      
     }
 
-    public void OnThrowInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    public void OnThrowInput(InputAction.CallbackContext context) // TODO : 리팩토링 클래스분리
     {
         pickaxeThrow?.Invoke();
     }
 
-    public void OnChangeCamera(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    public void OnChangeCamera(InputAction.CallbackContext context) // TODO : 리팩토링 클래스분리
     {
         toggleCamera?.Invoke();
     }
 
-    public void OnJumpInput(InputAction.CallbackContext context) // ToDo : 리팩토링 클래스분리
+    public void OnJumpInput(InputAction.CallbackContext context) // TODO : 리팩토링 클래스분리
     {
         if (context.phase == InputActionPhase.Performed && playerController.IsGrounded())
         {

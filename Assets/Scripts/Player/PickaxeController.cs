@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PickaxeController : MonoBehaviour
 {
-    public GameObject pickaxePrefab; // 곡괭이 프리펩
-    public Transform handTransform; // 손의 Transform
-    public Animator animator; // 플레이어의 애니메이터
-    public string throwAnimationName = "Throw"; // 던지기 애니메이션
-    public float throwForce = 10f; // 던질 힘
+    public GameObject pickaxePrefab; 
+    public Transform handTransform; 
+    public Animator animator; 
+    public string throwAnimationName = "Throw"; 
+    public float throwForce = 10f; 
 
     public float respawnTime;
     public Rigidbody rb;
-    private GameObject currentPickaxe; // 현재 손에 있는 곡괭이
+    private GameObject currentPickaxe; 
     private bool isHolding;
     void Start()
     {

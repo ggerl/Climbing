@@ -30,11 +30,11 @@ public class BullDozer : Trap, HaveLaser
     {
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
 
-        if (playerController != null)
+        if (playerController != null) 
         {
-            Vector3 dir = (collision.transform.position - transform.position).normalized;
+
             playerController.PlayerPushToggleCoroutine();
-            playerController.Addforce(dir,pushForce);
+            playerController.AddPlayerForce(rb.velocity.normalized,pushForce);
             
         }
     }

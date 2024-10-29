@@ -42,6 +42,7 @@ public partial class PlayerController : MonoBehaviour
     {
         if (!isPlayerPush)
         {
+            Debug.Log("이동중");
             Vector3 dir = transform.forward * vector2.y + transform.right * vector2.x;
             dir *= moveSpeed;
             dir.y = rb.velocity.y;
@@ -120,13 +121,14 @@ public partial class PlayerController : MonoBehaviour
 
     }
 
-    public void Addforce(Vector3 value,float force)
+    public void AddPlayerForce(Vector3 value,float force)
     {
         rb.AddForce(value * force, ForceMode.Impulse);
     }
 
     public void PlayerPushToggleCoroutine()
     {
+        Debug.Log("토글 코루틴 실행");
         StartCoroutine(PlyaerPushToggle());
     }
 
