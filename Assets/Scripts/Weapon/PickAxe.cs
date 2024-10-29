@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PickAxe : MonoBehaviour
+public class PickAxe : MonoBehaviour // 함정체크용 도구
 {
     private Rigidbody rb;
 
