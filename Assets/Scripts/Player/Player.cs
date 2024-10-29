@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public InteractableDataSO InteractableDataSO;
     public PlayerController playerController;
     public PlayerInputController playerInputController;
+    public PickaxeController pickaxeController; 
 
 
     private void Awake()
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
         playerController = GetComponent<PlayerController>(); 
         playerCondition = GetComponent<PlayerCondition>();  
         playerInputController = GetComponent<PlayerInputController>();
+        pickaxeController = GetComponent<PickaxeController>();  
     }
 
 }

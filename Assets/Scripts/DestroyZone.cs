@@ -8,7 +8,12 @@ public class DestroyZone : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(collision.gameObject);
-        SceneManager.LoadScene("MainScene");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            
+            SceneManager.LoadScene("MainScene");
+        }
+    
     }
 
 
