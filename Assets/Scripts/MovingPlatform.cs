@@ -19,6 +19,7 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 dir;
     public float moveSpeed;
     private Vector3 moveVec;
+    PlayerController playercontroller;
 
     void Awake()
     {
@@ -50,10 +51,37 @@ public class MovingPlatform : MonoBehaviour
         moveVec = dir * moveSpeed * Time.fixedDeltaTime;
         Vector3 newPosition = new Vector3(transform.position.x + moveVec.x, transform.position.y, transform.position.z + moveVec.z);
         rb.MovePosition(newPosition);
+        if (playercontroller != null)
+        {
+            playercontroller.FollowPlatform(moveVec);
+        }
+        
     }
 
     public void ReversVec()
     {
         dir = -dir;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if(collision.collider.TryGetComponent<PlayerController>(out playercontroller))
+        {
+            Debug.Log("PlayerController를 찾았습니다.");
+            playercontroller.followPlatform = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (playercontroller == null) return;
+
+        playercontroller.followPlatform = false;
+        playercontroller = null;
+
+
+    }
+
+
 }

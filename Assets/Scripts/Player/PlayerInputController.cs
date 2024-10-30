@@ -8,6 +8,11 @@ public class PlayerInputController : MonoBehaviour
     public Action pickaxeThrow;
     public Action toggleCamera;
     private Vector2 moveInput;
+    public bool followPlatform = false;
+
+    
+
+
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
@@ -15,7 +20,9 @@ public class PlayerInputController : MonoBehaviour
 
     private void Update()
     {
+
         playerController.Move(moveInput);
+       
     }
 
     public void OnMoveInput(InputAction.CallbackContext context) // TODO : 리팩토링 클래스분리
@@ -23,10 +30,13 @@ public class PlayerInputController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             moveInput = context.ReadValue<Vector2>();
+         
+        
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             moveInput = Vector2.zero;
+        
         }
     }
 

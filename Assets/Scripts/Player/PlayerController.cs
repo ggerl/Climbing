@@ -26,7 +26,9 @@ public partial class PlayerController : MonoBehaviour
     public Action pickaxeThrow;
     public Action toggleCamera;
     public bool isPlayerPush = false;
-    
+    public bool followPlatform = false;
+
+
 
     private void Start()
     {
@@ -139,5 +141,16 @@ public partial class PlayerController : MonoBehaviour
         isPlayerPush = false ;
 
     }
+
+    public void FollowPlatform(Vector3 moveVec)
+    {
+        if (followPlatform)
+        {
+            transform.position += moveVec;
+        }
+        
+    }
+
+   
 }
 

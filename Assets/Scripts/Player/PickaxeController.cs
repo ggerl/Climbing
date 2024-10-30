@@ -17,7 +17,7 @@ public class PickaxeController : MonoBehaviour // TODO : ¸®ÆÑÅä¸µ ¿¹Á¤
     Vector3 throwDirection;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         handTransform = animator.GetBoneTransform(HumanBodyBones.RightHand);
         // °î±ªÀÌ »ý¼º
         SpawnPickaxe();

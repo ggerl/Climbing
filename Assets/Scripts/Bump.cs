@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class Bump : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collider)
+    private MovingPlatform platform;
+
+
+    private void Awake()
     {
-        Debug.Log("콜라이더충돌");
-        if (collider.TryGetComponent<MovingPlatform>(out MovingPlatform movingPlatform))
-        {
-           
-            movingPlatform.ReversVec();
-        }
+        platform = GetComponentInParent<MovingPlatform>();  
 
     }
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Ground"))
+        {
+            platform.ReversVec();
+        }
 
-   
+
+    
+    }
+
+  
+
+
 }
