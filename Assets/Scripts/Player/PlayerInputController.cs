@@ -8,7 +8,7 @@ public class PlayerInputController : MonoBehaviour
     public Action pickaxeThrow;
     public Action toggleCamera;
     private Vector2 moveInput;
-    public bool followPlatform = false;
+   
 
     
 
